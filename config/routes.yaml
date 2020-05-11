@@ -1,0 +1,3 @@
+index:
+  path: /
+  controller: Wedding\Application\Controller\HomepageController::indexAction
