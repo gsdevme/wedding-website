@@ -1,0 +1,4 @@
+framework:
+    assets:
+      base_urls: 'https://a.ceilidhandgavin.com/assets'
+      base_path: ~

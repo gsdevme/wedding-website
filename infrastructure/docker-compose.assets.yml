@@ -1,0 +1,8 @@
+version: '3.5'
+
+services:
+  assets:
+    image: 'gsdevme/wedding-website-assets:prod'
+    build:
+      context: .
+      dockerfile: ./infrastructure/assets/Dockerfile

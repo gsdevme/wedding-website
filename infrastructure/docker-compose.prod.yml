@@ -1,12 +1,13 @@
 version: '3.5'
 
 services:
-    php:
-        build:
-            context: .
-            dockerfile: ./infrastructure/php/Dockerfile
-            target: prod
-        environment:
-            - APP_ENV=prod
-            - APP_SECRET=${APP_SECRET}
-        volumes: []
+  php:
+    image: 'gsdevme/wedding-website:prod'
+    build:
+      context: .
+      dockerfile: ./infrastructure/php/Dockerfile
+      target: prod
+    environment:
+      - APP_ENV=prod
+      - APP_SECRET=${APP_SECRET}
+    volumes: [ ]

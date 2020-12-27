@@ -1,26 +1,20 @@
 version: '3.5'
 
 services:
-    php:
-        build:
-            context: .
-            dockerfile: ./infrastructure/php/Dockerfile
-            target: dev
-        environment:
-            - APP_ENV=${APP_ENV}
-            - APP_SECRET=${APP_SECRET}
-        volumes:
-            - wedding_nfs:/srv/app
-            # to allow composer to function inside the container
-            - ~/.ssh:/root/.ssh:ro
-            - ~/.ssh:/var/www/.ssh:ro
-            - ~/.composer/auth.json:/root/.composer/auth.json:ro
-            - ~/.composer/auth.json:/var/www/.composer/auth.json:ro
-
-volumes:
-    wedding_nfs:
-        driver: local
-        driver_opts:
-            type: nfs
-            o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
-            device: ":$HOME/Sites/wedding"
+  php:
+    image: 'wedding-website:dev'
+    build:
+      context: .
+      dockerfile: ./infrastructure/php/Dockerfile
+      target: dev
+    environment:
+      - APP_ENV=${APP_ENV}
+      - APP_SECRET=${APP_SECRET}
+    volumes:
+      - './:/srv/app/:cached'
+      - /srv/app/vendor
+      - /srv/app/var
+      # to allow composer to function inside the container
+      - ~/.ssh:/root/.ssh:ro
+      - ~/.ssh:/var/www/.ssh:ro
+      - ~/.composer:/var/www/.composer

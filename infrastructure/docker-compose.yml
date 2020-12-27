@@ -1,22 +1,22 @@
 version: '3.5'
 
 services:
-    php:
-        container_name: phpfpm
-        restart: on-failure
-        user: www-data
-        environment:
-            - APP_ENV=${APP_ENV}
-            - APP_SECRET=${APP_SECRET}
-        volumes: []
-    nginx:
-        container_name: nginx
-        image: nginx:alpine
-        restart: on-failure
-        depends_on:
-            - php
-        volumes:
-            - ./public/:/srv/app/public:ro
-            - ./infrastructure/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-        ports:
-            - '80:80'
+  php:
+    container_name: wedding_phpfpm
+    restart: on-failure
+    user: www-data
+    environment:
+      - APP_ENV=${APP_ENV}
+      - APP_SECRET=${APP_SECRET}
+    volumes: [ ]
+  nginx:
+    container_name: wedding_nginx
+    image: nginx:alpine
+    restart: on-failure
+    depends_on:
+      - php
+    volumes:
+      - ./public/:/srv/app/public:ro
+      - ./infrastructure/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - '80:80'
