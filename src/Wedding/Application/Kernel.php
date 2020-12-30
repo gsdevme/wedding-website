@@ -25,17 +25,6 @@ class Kernel extends BaseKernel
         }
     }
 
-    public function getCacheDir()
-    {
-        if (is_dir('/dev/shm/')) {
-            return '/dev/shm/'.$this->environment;
-
-        }
-
-        parent::getCacheDir();
-    }
-
-
     public function getProjectDir(): string
     {
         $dir = realpath(sprintf('%s/../../', \dirname(__DIR__)));
