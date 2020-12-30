@@ -40,7 +40,6 @@ COPY ./.env /srv/app/.env
 COPY ./src/ /srv/app/src
 COPY ./bin/ /srv/app/bin
 COPY ./public/ /srv/app/public
-COPY ./vendor/ /srv/app/vendor
 COPY ./config/ /srv/app/config
 COPY ./templates/ /srv/app/templates
 
