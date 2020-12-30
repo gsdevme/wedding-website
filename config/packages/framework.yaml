@@ -10,6 +10,9 @@ framework:
         cookie_secure: auto
         cookie_samesite: lax
 
+    translator:
+      enabled_locales: ['en']
+
     #esi: true
     #fragments: true
     php_errors:
