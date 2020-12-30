@@ -25,5 +25,9 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
+before_script:
+  - docker pull php:8.0-fpm-buster
+  - make build
+
 script:
   - make ci
