@@ -19,12 +19,15 @@
         "symfony/serializer-pack": "*",
         "symfony/translation": "5.2.*",
         "symfony/twig-pack": "*",
+        "symfony/uid": "5.2.*",
         "symfony/validator": "5.2.*",
         "symfony/web-link": "5.2.*",
         "symfony/yaml": "5.2.*"
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12.18",
+        "sensiolabs-de/deptrac": "^0.10.2",
+        "squizlabs/php_codesniffer": "^3.5",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",

@@ -1,4 +1,10 @@
 {
+    "clue/graph": {
+        "version": "v0.9.2"
+    },
+    "composer/xdebug-handler": {
+        "version": "1.4.5"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -93,8 +99,14 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.0"
     },
+    "graphp/graphviz": {
+        "version": "v0.2.2"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "jetbrains/phpstorm-stubs": {
+        "version": "v2020.2"
     },
     "laminas/laminas-code": {
         "version": "3.4.1"
@@ -117,6 +129,9 @@
     "php": {
         "version": "7.4.4"
     },
+    "phpdocumentor/graphviz": {
+        "version": "1.0.4"
+    },
     "phpdocumentor/reflection-common": {
         "version": "2.0.0"
     },
@@ -125,6 +140,9 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "1.0.1"
+    },
+    "phpstan/phpdoc-parser": {
+        "version": "0.4.10"
     },
     "phpstan/phpstan": {
         "version": "0.12.18"
@@ -143,6 +161,18 @@
     },
     "psr/log": {
         "version": "1.1.2"
+    },
+    "sensiolabs-de/deptrac": {
+        "version": "0.10.2"
+    },
+    "squizlabs/php_codesniffer": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "0dc9cceda799fd3a08b96987e176a261028a3709"
+        }
     },
     "symfony/amqp-messenger": {
         "version": "v5.1.8"
@@ -308,6 +338,9 @@
             "config/packages/test/monolog.yaml"
         ]
     },
+    "symfony/options-resolver": {
+        "version": "v5.2.1"
+    },
     "symfony/orm-pack": {
         "version": "v1.0.7"
     },
@@ -343,6 +376,9 @@
         "version": "v1.13.1"
     },
     "symfony/polyfill-php80": {
+        "version": "v1.20.0"
+    },
+    "symfony/polyfill-uuid": {
         "version": "v1.20.0"
     },
     "symfony/process": {
@@ -454,6 +490,9 @@
     },
     "symfony/twig-pack": {
         "version": "v1.0.0"
+    },
+    "symfony/uid": {
+        "version": "v5.2.1"
     },
     "symfony/validator": {
         "version": "4.3",
