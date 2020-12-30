@@ -5,6 +5,8 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 EXPOSE 9000
 RUN mkdir -p /srv/app/var /srv/app/vendor && chown -R www-data:www-data /srv
 
+COPY ./infrastructure/php/entrypoint.sh /usr/local/bin/docker-php-entrypoint
+
 WORKDIR /srv/app/
 
 # Install dependencies
@@ -17,13 +19,17 @@ RUN buildDeps=" \
         libicu-dev \
     "; \
     set -x \
-    && apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/*
+    && apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* && chmod +x /usr/local/bin/docker-php-entrypoint
 
 RUN docker-php-ext-install -j$(nproc) intl opcache
 
+COPY ./infrastructure/php/php.ini /usr/local/etc/php/php.ini
+
 FROM base as dev
 
-# nothing
+COPY ./infrastructure/php/php-dev.ini /usr/local/etc/php/php.ini
+
+USER www-data
 
 FROM base as build
 
@@ -36,6 +42,7 @@ RUN composer install --no-dev -n --no-suggest -q --no-scripts
 FROM base as prod
 
 ENV APP_ENV=prod
+ENV APP_DEBUG=0
 
 COPY ./src/ /srv/app/src
 COPY ./bin/ /srv/app/bin
@@ -50,5 +57,7 @@ COPY --from=build /srv/app/composer.lock /srv/app/composer.lock
 
 COPY .env /srv/app/.env
 
-RUN chown -R www-data /srv/app/ && \
-   composer dump-autoload -n
+RUN chown -R www-data:www-data /srv/app/ && \
+   composer dump-autoload --no-dev --classmap-authoritative -n
+
+USER www-data

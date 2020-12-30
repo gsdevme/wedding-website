@@ -1,4 +1,4 @@
-version: '3.5'
+version: '2.4'
 
 services:
   php:
@@ -7,6 +7,9 @@ services:
       context: .
       dockerfile: ./infrastructure/php/Dockerfile
       target: dev
+    depends_on:
+      mysql:
+        condition: service_healthy
     environment:
       - APP_ENV=${APP_ENV}
       - APP_SECRET=${APP_SECRET}
@@ -18,3 +21,24 @@ services:
       - ~/.ssh:/root/.ssh:ro
       - ~/.ssh:/var/www/.ssh:ro
       - ~/.composer:/var/www/.composer
+  mysql:
+    container_name: wedding-mysql
+    restart: on-failure
+    ports:
+      - '3306:3306'
+    image: 'mysql:5.7'
+    volumes:
+      - wedding-mysql-database:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "echo", "-n", ">", "/dev/tcp/127.0.0.1/3306" ]
+      interval: 15s
+      timeout: 3s
+      retries: 10
+    environment:
+      MYSQL_USER: wedding
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wedding
+
+volumes:
+  wedding-mysql-database:

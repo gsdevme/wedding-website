@@ -58,7 +58,7 @@ stop:
 		-f infrastructure/docker-compose.yml \
 		-f infrastructure/docker-compose.$(env).yml \
 		--project-directory $(CURDIR) \
-		down --remove-orphans
+		down --remove-orphans --volumes
 
 
 push: build-prod
