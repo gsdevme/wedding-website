@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Wedding\Application\Http\Action\Web;
@@ -23,4 +24,3 @@ class Homepage
         return $response;
     }
 }
-

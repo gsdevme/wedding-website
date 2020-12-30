@@ -10,6 +10,18 @@ build:
 		--project-directory $(CURDIR) \
 		build
 
+ci:
+	docker-compose \
+		-f infrastructure/docker-compose.yml \
+		-f infrastructure/docker-compose.$(env).yml \
+		-f infrastructure/docker-compose.ci.yml \
+		--project-directory $(CURDIR) \
+		build
+
+run-ci:
+	vendor/bin/phpstan analyse -l 8 src/
+	vendor/bin/phpcs --colors --standard=PSR12 src/
+
 build-prod:
 	docker-compose \
 		-f infrastructure/docker-compose.yml \

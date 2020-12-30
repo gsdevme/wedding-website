@@ -1,0 +1,21 @@
+paths:
+  - ./src
+layers:
+  - name: Application
+    collectors:
+      - type: className
+        regex: .*Wedding\\Application\\.*
+  - name: Domain
+    collectors:
+      - type: className
+        regex: .*Wedding\\Domain\\.*
+  - name: Domain
+    collectors:
+      - type: className
+        regex: .*Wedding\\Domain\\.*
+ruleset:
+  # Application can use the domain
+  Application:
+    - Domain
+  # Domain cannot access the application
+  Domain: ~

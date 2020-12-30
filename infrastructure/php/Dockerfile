@@ -21,7 +21,7 @@ RUN buildDeps=" \
     set -x \
     && apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* && chmod +x /usr/local/bin/docker-php-entrypoint
 
-RUN docker-php-ext-install -j$(nproc) intl opcache
+RUN docker-php-ext-install -j$(nproc) intl opcache pdo_mysql
 
 COPY ./infrastructure/php/php.ini /usr/local/etc/php/php.ini
 
@@ -36,14 +36,7 @@ FROM base as build
 COPY ./composer.json /srv/app/composer.json
 COPY ./composer.lock /srv/app/composer.lock
 COPY ./symfony.lock /srv/app/symfony.lock
-
-RUN composer install --no-dev -n --no-suggest -q --no-scripts
-
-FROM base as prod
-
-ENV APP_ENV=prod
-ENV APP_DEBUG=0
-
+COPY ./.env /srv/app/.env
 COPY ./src/ /srv/app/src
 COPY ./bin/ /srv/app/bin
 COPY ./public/ /srv/app/public
@@ -51,13 +44,23 @@ COPY ./vendor/ /srv/app/vendor
 COPY ./config/ /srv/app/config
 COPY ./templates/ /srv/app/templates
 
-COPY --from=build /srv/app/vendor /srv/app/vendor
-COPY --from=build /srv/app/composer.json /srv/app/composer.json
-COPY --from=build /srv/app/composer.lock /srv/app/composer.lock
+RUN composer install -n --no-suggest -q --no-scripts
 
-COPY .env /srv/app/.env
+FROM build as ci
+
+COPY ./Makefile /srv/app/Makefile
+
+RUN make run-ci
+
+FROM base as prod
+
+ENV APP_ENV=prod
+ENV APP_DEBUG=0
+
+COPY --from=build /srv/app/ /srv/app/
 
 RUN chown -R www-data:www-data /srv/app/ && \
+   composer install --no-dev -n --no-suggest -q --no-scripts && \
    composer dump-autoload --no-dev --classmap-authoritative -n
 
 USER www-data

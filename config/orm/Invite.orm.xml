@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Wedding\Domain\Entity\Invite" table="invites">
+
+<!--        <indexes>-->
+<!--            <index name="name_idx" columns="name"/>-->
+<!--            <index columns="user_email"/>-->
+<!--        </indexes>-->
+
+<!--        <unique-constraints>-->
+<!--            <unique-constraint columns="name,user_email" name="search_idx"/>-->
+<!--        </unique-constraints>-->
+
+<!--        <lifecycle-callbacks>-->
+<!--            <lifecycle-callback type="prePersist" method="doStuffOnPrePersist"/>-->
+<!--            <lifecycle-callback type="prePersist" method="doOtherStuffOnPrePersistToo"/>-->
+<!--            <lifecycle-callback type="postPersist" method="doStuffOnPostPersist"/>-->
+<!--        </lifecycle-callbacks>-->
+
+        <id name="reference" type="uuid">
+            <generator strategy="NONE"/>
+        </id>
+
+        <field name="code" type="string" length="4" nullable="false" unique="true"/>
+        <field name="createdAt" type="datetimetz_immutable" nullable="false"/>
+    </entity>
+
+</doctrine-mapping>
