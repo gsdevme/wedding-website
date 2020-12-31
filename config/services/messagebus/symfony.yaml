@@ -1,0 +1,7 @@
+services:
+  _defaults:
+    public: false
+    autowire: false
+    autoconfigure: false
+
+  Wedding\Port\MessageBus\CommandBusInterface: '@Wedding\Infrastructure\MessageBus\Symfony\CommandBus'

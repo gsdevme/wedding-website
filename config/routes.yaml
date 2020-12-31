@@ -1,3 +1,8 @@
 home:
   path: /
   controller: Wedding\Application\Http\Action\Web\Homepage
+
+healthz:
+  path: /api/healthz
+  controller: Wedding\Application\Http\Action\Web\Healthz
+  methods: ['GET', 'HEAD']

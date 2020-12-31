@@ -1,0 +1,7 @@
+services:
+    _defaults:
+        public: false
+        autowire: false
+        autoconfigure: false
+
+    Wedding\Port\Uuid\UuidGeneratorInterface: '@Wedding\Infrastructure\Uuid\Ramsey\UuidGenerator'

@@ -16,4 +16,14 @@ class Invite
         $this->code = $code;
         $this->createdAt = new \DateTimeImmutable();
     }
+
+    public static function create(string $reference): self
+    {
+        return new self($reference, self::generateInviteCode());
+    }
+
+    public static function generateInviteCode(int $length = 4): string
+    {
+        return strtoupper(strval(bin2hex(random_bytes($length / 2))));
+    }
 }

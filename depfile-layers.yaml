@@ -1,21 +1,23 @@
 paths:
   - ./src
+exclude_files:
+  - ./src/Wedding/Application/Kernel.php
 layers:
   - name: Application
     collectors:
       - type: className
-        regex: .*Wedding\\Application\\.*
+        regex: .*Wedding\\Application.*
   - name: Domain
     collectors:
       - type: className
         regex: .*Wedding\\Domain\\.*
-  - name: Domain
+  - name: Infrastructure
     collectors:
       - type: className
-        regex: .*Wedding\\Domain\\.*
+        regex: .*Wedding\\Infrastructure\\.*
 ruleset:
-  # Application can use the domain
   Application:
     - Domain
-  # Domain cannot access the application
   Domain: ~
+  Infrastructure:
+    - Domain

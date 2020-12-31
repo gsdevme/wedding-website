@@ -1,0 +1,40 @@
+paths:
+  - ./src
+exclude_files:
+  - ./src/Wedding/Application/Kernel.php
+layers:
+  - name: Application
+    collectors:
+      - type: className
+        regex: .*Wedding\\Application\\.*
+  - name: Domain
+    collectors:
+      - type: className
+        regex: .*Wedding\\Domain\\.*
+  - name: EverythingElse
+    collectors:
+      - type: bool
+        must:
+          - type: className
+            regex: .*
+        must_not:
+          - type: className
+            regex: .*Wedding\\.*
+          - type: className
+            regex: ^Psr\\.*
+          - type: className
+            regex: .*Twig\\.*
+          - type: className
+            regex: .*Symfony\\Component\\Console\\.*
+          - type: className
+            regex: .*Symfony\\Component\\HttpFoundation\\.*
+          - type: className
+            regex: DateTimeImmutable
+          - type: className
+            regex: JsonSerializable
+ruleset:
+  Application:
+    - Domain
+  # i.e. prevent third parties being used inside the domain
+  Domain: ~
+  EverythingElse: ~

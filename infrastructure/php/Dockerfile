@@ -37,6 +37,9 @@ COPY ./composer.json /srv/app/composer.json
 COPY ./composer.lock /srv/app/composer.lock
 COPY ./symfony.lock /srv/app/symfony.lock
 COPY ./.env /srv/app/.env
+COPY ./phpstan.neon /srv/app/phpstan.neon
+COPY ./depfile-layers.yaml /srv/app/depfile-layers.yaml
+COPY ./depfile-third-party.yaml /srv/app/depfile-third-party.yaml
 COPY ./src/ /srv/app/src
 COPY ./bin/ /srv/app/bin
 COPY ./public/ /srv/app/public

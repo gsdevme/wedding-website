@@ -1,0 +1,7 @@
+services:
+  _defaults:
+    public: false
+    autowire: false
+    autoconfigure: false
+
+  Wedding\Domain\Repository\Write\InviteRepositoryInterface: '@Wedding\Infrastructure\Persistence\Doctrine\Write\InviteRepository'
