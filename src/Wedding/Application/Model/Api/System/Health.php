@@ -9,7 +9,7 @@ class Health implements \JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'success' => 'ok'
+            'success' => 'ok',
         ];
     }
 }

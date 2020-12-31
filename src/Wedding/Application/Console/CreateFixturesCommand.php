@@ -13,7 +13,7 @@ use Wedding\Port\Uuid\UuidGeneratorInterface;
 
 class CreateFixturesCommand extends Command
 {
-    protected static $defaultName = 'wedding:debug:create-fixtures';
+    protected static $defaultName = 'wedding:debug:create-fixtures'; // phpcs:ignore
 
     private UuidGeneratorInterface $uuidGenerator;
 
@@ -29,6 +29,8 @@ class CreateFixturesCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         foreach (range(1, 30) as $invites) {
+            unset($invites);
+
             $reference = $this->uuidGenerator->generate();
 
             $this->commandBus->handle(new CreateInviteCommand($reference));

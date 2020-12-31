@@ -26,4 +26,19 @@ class Invite
     {
         return strtoupper(strval(bin2hex(random_bytes($length / 2))));
     }
+
+    public function getReference(): string
+    {
+        return $this->reference;
+    }
+
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
+    public function getCreatedAt(): \DateTimeInterface
+    {
+        return $this->createdAt;
+    }
 }

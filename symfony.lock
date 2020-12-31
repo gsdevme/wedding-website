@@ -2,6 +2,9 @@
     "brick/math": {
         "version": "0.9.1"
     },
+    "dealerdirect/phpcodesniffer-composer-installer": {
+        "version": "v0.7.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -129,6 +132,9 @@
     "phpdocumentor/type-resolver": {
         "version": "1.0.1"
     },
+    "phpstan/phpdoc-parser": {
+        "version": "0.4.9"
+    },
     "phpstan/phpstan": {
         "version": "0.12.18"
     },
@@ -164,6 +170,9 @@
             "version": "0.7",
             "ref": "1f7e6648916732a736466ccf2caa5b4b4e7f4968"
         }
+    },
+    "slevomat/coding-standard": {
+        "version": "6.4.1"
     },
     "squizlabs/php_codesniffer": {
         "version": "3.0",

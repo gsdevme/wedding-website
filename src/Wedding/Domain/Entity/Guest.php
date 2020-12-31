@@ -17,4 +17,19 @@ class Guest
         $this->invite = $invite;
         $this->name = $name;
     }
+
+    public function getReference(): string
+    {
+        return $this->reference;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getInvite(): Invite
+    {
+        return $this->invite;
+    }
 }
