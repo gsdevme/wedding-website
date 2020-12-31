@@ -1,5 +1,7 @@
 # http://ceilidhandgavin.com/
 
+[![Build Status](https://travis-ci.com/gsdevme/wedding-website.svg?branch=master)](https://travis-ci.com/gsdevme/wedding-website)
+
 # Deployments
 
 | Env | Description |
