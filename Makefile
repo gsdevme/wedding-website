@@ -39,6 +39,18 @@ start:
 		--project-directory $(CURDIR) \
 		up -d
 
+install:
+	docker-compose \
+		-f infrastructure/docker-compose.yml \
+		-f infrastructure/docker-compose.dev.yml \
+		--project-directory $(CURDIR) exec php composer install
+
+init-db:
+	docker-compose \
+		-f infrastructure/docker-compose.yml \
+		-f infrastructure/docker-compose.dev.yml \
+		--project-directory $(CURDIR) exec php bin/console doctrine:schema:update --force -n
+
 restart:
 	docker-compose \
 		-f infrastructure/docker-compose.yml \
