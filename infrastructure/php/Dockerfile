@@ -40,6 +40,7 @@ COPY ./.env /srv/app/.env
 COPY ./phpstan.neon /srv/app/phpstan.neon
 COPY ./depfile-layers.yaml /srv/app/depfile-layers.yaml
 COPY ./depfile-third-party.yaml /srv/app/depfile-third-party.yaml
+COPY ./ruleset.xml /srv/app/ruleset.xml
 COPY ./src/ /srv/app/src
 COPY ./bin/ /srv/app/bin
 COPY ./public/ /srv/app/public
