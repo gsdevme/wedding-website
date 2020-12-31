@@ -32,6 +32,8 @@ layers:
             regex: DateTimeImmutable
           - type: className
             regex: JsonSerializable
+          - type: className
+            regex: DateTimeInterface
 ruleset:
   Application:
     - Domain
