@@ -11,9 +11,22 @@ https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
         </id>
 
         <field name="name" length="64" type="string"/>
+        <field name="attending" type="smallint" nullable="false" length="1"/>
 
         <many-to-one field="invite" target-entity="Wedding\Domain\Entity\Invite">
             <join-column name="invite_reference" referenced-column-name="reference" on-delete="CASCADE" nullable="false"/>
+        </many-to-one>
+
+        <many-to-one field="starter" target-entity="Wedding\Domain\Entity\FoodChoice">
+            <join-column name="starter_reference" referenced-column-name="reference" on-delete="CASCADE" nullable="true"/>
+        </many-to-one>
+
+        <many-to-one field="main" target-entity="Wedding\Domain\Entity\FoodChoice">
+            <join-column name="main_reference" referenced-column-name="reference" on-delete="CASCADE" nullable="true"/>
+        </many-to-one>
+
+        <many-to-one field="dessert" target-entity="Wedding\Domain\Entity\FoodChoice">
+            <join-column name="dessert_reference" referenced-column-name="reference" on-delete="CASCADE" nullable="true"/>
         </many-to-one>
     </entity>
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Wedding\Domain\Entity\FoodType" table="food_types">
+
+        <id name="reference" type="uuid">
+            <generator strategy="NONE"/>
+        </id>
+
+        <field name="name" type="string" length="32" nullable="false" unique="true"/>
+    </entity>
+
+</doctrine-mapping>

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Wedding\Application\Http\Action\Web;
+namespace Wedding\Application\Http\Action\Api;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;

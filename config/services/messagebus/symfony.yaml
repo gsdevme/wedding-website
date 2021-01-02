@@ -5,3 +5,4 @@ services:
     autoconfigure: false
 
   Wedding\Port\MessageBus\CommandBusInterface: '@Wedding\Infrastructure\MessageBus\Symfony\CommandBus'
+  Wedding\Port\MessageBus\QueryBusInterface: '@Wedding\Infrastructure\MessageBus\Symfony\QueryBus'

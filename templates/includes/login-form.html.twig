@@ -1,0 +1,40 @@
+<section class="rsvp rsvp-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h1>Say you'll be there</h1>
+                <p>
+                    Please let us know if you can make it<br> by the 12<sup>th</sup> of March at the latest!
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <div class="form-wrapper">
+                    {% if error is defined %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h6 style="color: indianred">{{ error }}</h6>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <form class="form-email" method="post" action="{{ url('invite_login') }}">
+                        <div class="form-section">
+                            <input type="text" name="code" class="input-error" autocomplete="off"
+                                   placeholder="Your Invite Code">
+                            <input type="submit" class="btn checked" name="rsvp" value="RSVP">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if error is defined %}
+<style>
+    .input-error { border: 1px solid palevioletred !important; }
+</style>
+{% endif %}

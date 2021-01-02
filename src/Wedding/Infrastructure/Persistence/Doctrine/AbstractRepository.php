@@ -6,7 +6,9 @@ namespace Wedding\Infrastructure\Persistence\Doctrine;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use DoctrineBatchUtils\BatchProcessing\SelectBatchIteratorAggregate;
 
 abstract class AbstractRepository
 {
@@ -64,5 +66,39 @@ abstract class AbstractRepository
         $this->hasBeenReset = false;
 
         return $manager;
+    }
+
+    /**
+     * This helper util will prevent 10,000+ rows being selected from any database
+     * and 'paginate' within PHP but also clearing the ORM UnitOfWork to prevent memory leaking
+     *
+     * @param QueryBuilder $queryBuilder
+     * @param int $batchSize
+     * @return \Generator<mixed>
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    protected function getPaginatedGenerator(QueryBuilder $queryBuilder, int $batchSize): \Generator
+    {
+        $countQueryBuilder = clone $queryBuilder;
+
+        $count = intval($countQueryBuilder->select('count(1)')->getQuery()->getSingleScalarResult());
+        $offset = 0;
+        $limit = $batchSize;
+        $pages = ceil($count / $batchSize);
+        $page = 1;
+
+        do {
+            $queryBuilder = $queryBuilder->setFirstResult($offset)->setMaxResults($limit);
+
+            $iterator = SelectBatchIteratorAggregate::fromQuery($queryBuilder->getQuery(), $batchSize)->getIterator();
+
+            foreach ($iterator as $i) {
+                yield $i;
+            }
+
+            $offset += $batchSize;
+            $page += 1;
+        } while ($page <= $pages);
     }
 }

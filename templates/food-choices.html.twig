@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block navigation_class %}
+    {# override to none #}
+{% endblock %}
+
+{% block main %}
+    <style>
+        .food {
+            border: 1px solid #75c5b1;
+            margin-bottom: 5px;
+            width: 100%;
+            background-color: #FCFCFC;
+        }
+
+        .food p
+        {
+            /*display: inline-block;*/
+            width: 100%;
+            padding: 2%;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 0 !important;
+            font-family: 'Lato';
+        }
+
+        .food span
+        {
+            padding: 3%;
+            font-weight: 300;
+            font-family: 'Lato';
+        }
+
+        .form-section textarea
+        {
+            width: 100%;
+            resize: none;
+            border: 1px solid #75c5b1;
+            font-family: 'Lato';
+            padding:3%;
+        }
+
+
+    </style>
+
+    <section class="rsvp rsvp-1">
+        <div class="container">
+            <div class="col-sm-12 text-center">
+                <h1>Food Choices</h1>
+            </div>
+
+            {% if error is not null %}
+                <div class="col-sm-12 text-center">
+                    <h4 style="color: darkred">{{ error }}</h4>
+                </div>
+            {% endif %}
+
+            {% set colClassName = 'col-md-12' %}
+
+            {% if form.multipleGuests %}
+                {% set colClassName = 'col-md-6' %}
+            {% endif %}
+
+            <form method="post">
+
+                {% for guest in form.guestReferences %}
+                    <div class="{{ colClassName }} text-center">
+                        {% for field in form.guestFields(guest) %}
+                            <div class="form-section">
+                                {% if field.type == 'group' %}
+
+                                    <h4 style="text-transform: uppercase;margin-bottom: 10px">{{ field.metadata.title }}</h4>
+                                    <div class="radio-group" {{ field.attributes|raw }}>
+                                        {% for input in field.inputs %}
+                                            <div class="radio-holder food">
+                                                <p>{{ input.metadata.display }}</p>
+                                                <span>{{ input.metadata.description }}</span>
+                                                <input type="{{ input.type }}" name="{{ input.name }}"
+                                                       value="{{ input.value }}">
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% elseif field.type == 'textarea' %}
+                                    <textarea name="{{ field.name }}" {{ field.attributes|raw }}></textarea>
+                                {% else %}
+                                    <input type="{{ field.type }}" name="{{ field.name }}"
+                                           value="{{ field.value }}" {{ field.attributes|raw }}>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                {% for field in form.fields %}
+                    <div class="col-md-12 text-center">
+                        <div class="form-section">
+                            <input type="{{ field.type }}" name="{{ field.name }}"
+                                   value="{{ field.value }}" {{ field.attributes|raw }}>
+                        </div>
+                    </div>
+                {% endfor %}
+            </form>
+        </div>
+    </section>
+
+    <script>
+        (function () {
+            document.querySelectorAll('.radio-group').forEach(function (group) {
+                let resetChecked = function () {
+                    group.querySelectorAll('.food').forEach(function (d) {
+                        d.classList.remove('checked');
+                        d.querySelector('input').removeAttribute('checked');
+                    });
+                };
+
+                group.querySelectorAll('.food').forEach(function (div) {
+                    div.addEventListener('click', function (e) {
+                        resetChecked();
+
+                        e.currentTarget.querySelector('input').setAttribute('checked', true);
+                        e.currentTarget.classList.add('checked');
+                    });
+                });
+            });
+        })();
+    </script>
+{% endblock %}

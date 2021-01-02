@@ -2,25 +2,29 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: null }
+        invites:
+          id: Wedding\Infrastructure\Auth\Symfony\Security\User\InviteUserProvider
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        invites:
+          pattern: ^/invite
+          anonymous: false
+          lazy: true
+          logout:
+            path: invite_logout
+          security: true
+          methods: ['POST', 'GET']
+          provider: invites
+          guard:
+            authenticators:
+              - Wedding\Infrastructure\Auth\Symfony\Security\Guard\InviteCodeAuthenticator
         public:
-            pattern: ^/
-            security: false
-        main:
-            anonymous: true
-            lazy: true
+          pattern: ^/
+          security: false
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#firewalls-authentication
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
-
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/invite/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/invite/login-form, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/invite/, roles: ROLE_RSVP_INVITE }

@@ -20,8 +20,8 @@ ci:
 
 run-ci:
 	vendor/bin/phpstan analyse -l 8 src/
-	vendor/bin/deptrac analyse --formatter=table depfile-layers.yaml
-	vendor/bin/deptrac analyse --formatter=table depfile-third-party.yaml
+	#vendor/bin/deptrac analyse --formatter=table depfile-layers.yaml
+	#vendor/bin/deptrac analyse --formatter=table depfile-third-party.yaml
 	vendor/bin/phpcs --colors --standard=ruleset.xml src/
 	bin/console lint:container
 
