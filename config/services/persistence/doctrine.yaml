@@ -5,3 +5,11 @@ services:
     autoconfigure: false
 
   Wedding\Domain\Repository\Write\InviteRepositoryInterface: '@Wedding\Infrastructure\Persistence\Doctrine\Write\InviteRepository'
+  Wedding\Domain\Repository\Read\InviteRepositoryInterface: '@Wedding\Infrastructure\Persistence\Doctrine\Read\InviteRepository'
+
+  Wedding\Domain\Repository\Write\GuestRepositoryInterface: '@Wedding\Infrastructure\Persistence\Doctrine\Write\GuestRepository'
+  Wedding\Domain\Repository\Read\GuestRepositoryInterface: '@Wedding\Infrastructure\Persistence\Doctrine\Read\GuestRepository'
+
+  Wedding\Domain\Repository\Read\FoodChoiceRepositoryInterface: '@Wedding\Infrastructure\Persistence\Doctrine\Read\FoodChoiceRepository'
+  Wedding\Domain\Repository\Write\FoodChoiceRepositoryInterface: '@Wedding\Infrastructure\Persistence\Doctrine\Write\FoodChoiceRepository'
+  Wedding\Domain\Repository\Write\FoodTypeRepositoryInterface: '@Wedding\Infrastructure\Persistence\Doctrine\Write\FoodTypeRepository'

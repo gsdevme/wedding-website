@@ -17,6 +17,7 @@ RUN buildDeps=" \
         zip \
         unzip \
         libicu-dev \
+        dnsutils \
     "; \
     set -x \
     && apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* && chmod +x /usr/local/bin/docker-php-entrypoint
@@ -43,7 +44,7 @@ COPY ./depfile-third-party.yaml /srv/app/depfile-third-party.yaml
 COPY ./ruleset.xml /srv/app/ruleset.xml
 COPY ./src/ /srv/app/src
 COPY ./bin/ /srv/app/bin
-COPY ./public/ /srv/app/public
+COPY ./public/index.php /srv/app/public/index.php
 COPY ./config/ /srv/app/config
 COPY ./templates/ /srv/app/templates
 
@@ -63,7 +64,7 @@ ENV APP_DEBUG=0
 COPY --from=build /srv/app/ /srv/app/
 
 RUN chown -R www-data:www-data /srv/app/ && \
-   composer install --no-dev -n --no-suggest -q --no-scripts && \
+   composer install --no-dev -n --no-suggest --no-scripts && \
    composer dump-autoload --no-dev --classmap-authoritative -n
 
 USER www-data

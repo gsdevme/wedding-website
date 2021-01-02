@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block navigation_class %}
+    {# override to none #}
+{% endblock %}
+
+{% block main %}
+    <section class="rsvp rsvp-1">
+        <div class="container">
+            <div class="col-sm-12 text-center">
+                <h1>SAY YOU'LL BE THERE</h1>
+            </div>
+
+            {% if error is not null %}
+                <div class="col-sm-12 text-center">
+                    <h4 style="color: darkred">{{ error }}</h4>
+                </div>
+            {% endif %}
+
+            {% set colClassName = 'col-md-12' %}
+
+            {% if rsvp.multipleGuests %}
+                {% set colClassName = 'col-md-6' %}
+            {% endif %}
+
+            <form method="post">
+
+                {% for guest in rsvp.guestReferences %}
+                    <div class="{{ colClassName }} text-center">
+                        {% for field in rsvp.guestFields(guest) %}
+                            <div class="form-section">
+                                {% if field.type == 'group' %}
+                                    <div class="radio-group" {{ field.attributes }}>
+                                        {% for input in field.inputs %}
+                                            <div class="radio-holder btn">
+                                                <span>{{ input.value }}</span>
+                                                <input type="{{ input.type }}" name="{{ input.name }}"
+                                                       value="{{ input.value }}">
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <input type="{{ field.type }}" name="{{ field.name }}"
+                                           value="{{ field.value }}" {{ field.attributes }}">
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                {% for field in rsvp.fields %}
+                    <div class="col-md-12 text-center">
+                        <div class="form-section">
+                            <input type="{{ field.type }}" name="{{ field.name }}"
+                                   value="{{ field.value }}" {{ field.attributes }}">
+                        </div>
+                    </div>
+                {% endfor %}
+            </form>
+        </div>
+    </section>
+
+    <script>
+        (function () {
+            document.querySelectorAll('.radio-group').forEach(function (group) {
+                let resetChecked = function () {
+                    group.querySelectorAll('.radio-holder').forEach(function (d) {
+                        d.classList.remove('checked');
+                        d.querySelector('input').removeAttribute('checked');
+                    });
+                };
+
+                group.querySelectorAll('.radio-holder').forEach(function (div) {
+                    div.addEventListener('click', function (e) {
+                        resetChecked();
+
+                        e.currentTarget.querySelector('input').setAttribute('checked', true);
+                        e.currentTarget.classList.add('checked');
+                    });
+                });
+            });
+        })();
+    </script>
+{% endblock %}

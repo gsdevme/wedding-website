@@ -3,3 +3,5 @@ framework:
       base_urls: 'https://a.ceilidhandgavin.com/assets'
       base_path: ~
       version: 'v5'
+    session:
+      cookie_secure: true

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Wedding\Application;
+namespace Wedding\Infrastructure\Kernel\Symfony;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -29,7 +29,7 @@ class Kernel extends BaseKernel
 
     public function getProjectDir(): string
     {
-        $dir = realpath(sprintf('%s/../../', \dirname(__DIR__)));
+        $dir = realpath(sprintf('%s/../../../../', \dirname(__DIR__)));
 
         if (!$dir) {
             throw new \LogicException();

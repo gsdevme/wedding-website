@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Wedding\Domain\Entity\FoodChoice" table="food_choices">
+
+        <id name="reference" type="uuid">
+            <generator strategy="NONE"/>
+        </id>
+
+        <many-to-one field="foodType" target-entity="Wedding\Domain\Entity\FoodType">
+            <join-column name="food_choice_reference" referenced-column-name="reference" on-delete="CASCADE" nullable="false"/>
+        </many-to-one>
+
+        <field name="name" type="string" length="32" nullable="false" unique="true"/>
+        <field name="description" type="string" length="128">
+            <options>
+                <option name="default">""</option>
+            </options>
+        </field>
+    </entity>
+
+</doctrine-mapping>

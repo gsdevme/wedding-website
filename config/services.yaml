@@ -5,6 +5,9 @@ services:
         public: false
         autowire: true
         autoconfigure: false
+        bind:
+          # yolo just bind it to everything, should be reet
+          $kernelEnvironment: '%kernel.environment%'
 
     Wedding\Application\Http\Action\Web\:
         resource: '%kernel.project_dir%/src/Wedding/Application/Http/Action/Web'
@@ -15,6 +18,10 @@ services:
       tags:
         - { name: 'console.command' }
 
+    application_form_handlers:
+      namespace: Wedding\Application\Form\Handler\
+      resource: '%kernel.project_dir%/src/Wedding/Application/Form/Handler/*Handler.php'
+
     Wedding\Infrastructure\:
       resource: '%kernel.project_dir%/src/Wedding/Infrastructure/'
 
@@ -23,3 +30,9 @@ services:
       resource: '%kernel.project_dir%/src/Wedding/Domain/Command/*Handler.php'
       tags:
         - { name: messenger.message_handler, bus: command.bus }
+
+    application_query_handlers:
+      namespace: Wedding\Application\Query\
+      resource: '%kernel.project_dir%/src/Wedding/Application/Query/*Handler.php'
+      tags:
+        - { name: messenger.message_handler, bus: query.bus }

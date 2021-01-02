@@ -1,0 +1,25 @@
+parameters:
+  env(SENTRY_DSN): ''
+
+sentry:
+  dsn: '%env(string:SENTRY_DSN)%'
+  register_error_listener: false # Disables the ErrorListener
+    options:
+      # Attach the stack trace even for logger-> calls
+      attach_stacktrace: true
+      # Everything except deprecations
+      error_types: 'E_ALL & ~E_USER_DEPRECATED & ~E_DEPRECATED'
+      capture_silenced_errors: false
+      excluded_exceptions:
+        - Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
+        - Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+        - Symfony\Component\HttpKernel\Exception\BadRequestHttpException
+        - Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
+  monolog:
+    error_handler:
+      enabled: true
+      level: error
+
+services:
+  Monolog\Processor\PsrLogMessageProcessor:
+    tags: { name: monolog.processor, handler: sentry }

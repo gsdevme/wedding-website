@@ -5,3 +5,5 @@ services:
         autoconfigure: false
 
     Wedding\Port\Uuid\UuidGeneratorInterface: '@Wedding\Infrastructure\Uuid\Ramsey\UuidGenerator'
+    Wedding\Port\Translation\TranslatorInterface: '@Wedding\Infrastructure\Translator\Symfony\Translator'
+

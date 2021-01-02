@@ -5,8 +5,13 @@ exclude_files:
 layers:
   - name: Application
     collectors:
-      - type: className
-        regex: .*Wedding\\Application\\.*
+      - type: bool
+        must:
+          - type: className
+            regex: .*Wedding\\Application\\.*
+        must_not:
+          - type: className
+            regex: .*Wedding\\Application\\Http\\Action\\.*
   - name: Domain
     collectors:
       - type: className
@@ -34,6 +39,14 @@ layers:
             regex: JsonSerializable
           - type: className
             regex: DateTimeInterface
+          - type: className
+            regex: BadMethodCallException
+          - type: className
+            regex: RuntimeException
+          - type: className
+            regex: InvalidArgumentException
+          - type: className
+            regex: DateTime
 ruleset:
   Application:
     - Domain
