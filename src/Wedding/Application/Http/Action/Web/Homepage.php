@@ -19,7 +19,7 @@ class Homepage
     public function __invoke(): Response
     {
         $response = new Response($this->twig->render('homepage.html.twig'));
-        $response->setSharedMaxAge(120);
+        $response->setSharedMaxAge(600);
 
         return $response;
     }
