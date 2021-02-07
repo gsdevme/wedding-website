@@ -23,6 +23,7 @@ RUN buildDeps=" \
     && apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* && chmod +x /usr/local/bin/docker-php-entrypoint
 
 RUN docker-php-ext-install -j$(nproc) intl opcache pdo_mysql
+RUN pecl install redis
 
 COPY ./infrastructure/php/php.ini /usr/local/etc/php/php.ini
 

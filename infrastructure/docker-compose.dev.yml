@@ -10,6 +10,8 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     environment:
       - APP_ENV=${APP_ENV}
       - APP_SECRET=${APP_SECRET}
@@ -39,6 +41,15 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: wedding
+  redis:
+    container_name: wedding-redis
+    restart: on-failure
+    image: 'redis:6-alpine'
+    healthcheck:
+      test: [ "CMD", "echo", "-n", ">", "/dev/tcp/127.0.0.1/6379" ]
+      interval: 15s
+      timeout: 3s
+      retries: 10
 
 volumes:
   wedding-mysql-database:
