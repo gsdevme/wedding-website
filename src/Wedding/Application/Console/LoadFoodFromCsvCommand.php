@@ -36,7 +36,6 @@ class LoadFoodFromCsvCommand extends Command
         $this->addArgument('file', InputArgument::REQUIRED, 'The full path to the file');
     }
 
-
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $filePath = realpath(strval($input->getArgument('file')));
@@ -50,8 +49,6 @@ class LoadFoodFromCsvCommand extends Command
         $foodChoices = $csv->getRecords();
 
         foreach ($foodChoices as $food) {
-            dump($food);
-
             if (!is_array($food)) {
                 continue;
             }
@@ -69,7 +66,6 @@ class LoadFoodFromCsvCommand extends Command
                 strval($food[2])
             ));
         }
-
 
         return 0;
     }
