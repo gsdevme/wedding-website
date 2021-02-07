@@ -8,7 +8,7 @@ framework:
     session:
         name: 'wedding_session'
         cookie_lifetime: 3600
-        handler_id: null
+        handler_id:  snc_redis.session.handler
         cookie_path: /invite
         cookie_samesite: strict
 

@@ -71,7 +71,7 @@
     </section>
 
 
-    <section class="details details-3">
+    <section class="details details-3" style="padding-bottom: 0">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center">
@@ -85,11 +85,11 @@
                 <div class="col-md-6 col-md-offset-3 text-center feature">
                     <h5>Ceremony & Reception</h5>
                     <p>
-                        <strong>Ardanaiseig Hotel</strong><br>
-                        2pm<br/>
+                        <strong><a href="https://www.ardanaiseig.com/" target="_blank">Ardanaiseig Hotel</a></strong><br>
                         Kilchrenan by Taynuilt<br/>
                         Argyll<br/>
-                        PA35 1HE
+                        PA35 1HE<br/>
+                        Ceremony to begin at <strong>2pm</strong>
                     </p>
                 </div>
             </div>
@@ -98,7 +98,7 @@
 
     <a id="location" class="in-page-link"></a>
 
-    <section class="accom accom-2 bg-secondary">
+    <section class="accom accom-2 bg-secondary" style="padding-top: 0">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
@@ -109,17 +109,23 @@
             <div class="row">
                 <div class="col-sm-4 feature">
                     <a href="#">
-                        {# <img alt="Hotel" src="img/small5.jpg"> #}
+                         <img alt="Hotel" width="100%" src="{{ asset('img/small-left.jpg') }}">
                     </a>
                     <h6>Room Bookings</h6>
                     <p>
-                        To book a room at the venue, please contact Christine Fox via phone 01866 833333 or email christine@argyllhospitality.co.uk. Please note that there is no fee for booking and cancellations (fingers crossed won't be required!) are free.
+                        To book a room at the venue, please contact Christine Fox via phone <strong><a href="tel:01866 833333">01866 833333</a></strong> or email <strong><a href="mailto:christine@argyllhospitality.co.uk">christine@argyllhospitality.co.uk</a></strong>. Please note that there is no fee for booking and cancellations (fingers crossed won't be required!) are free.
                     </p>
                 </div>
 
                 <div class="col-sm-4 feature">
                     <a href="#">
-                        {# <img alt="Hotel" src="img/small6.jpg"> #}
+                        <iframe
+                                width="100%"
+                                height="350"
+                                frameborder="0" style="border:0"
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB-dzCFWNUIFC8IZZJxMwyqB7shsF_v0U4
+    &q=Ardanaiseig Hotel" allowfullscreen>
+                        </iframe>
                     </a>
                     <h6>How to get there</h6>
                     <p>
@@ -129,7 +135,7 @@
 
                 <div class="col-sm-4 feature">
                     <a href="#">
-                        {# <img alt="Hotel" src="img/small7.jpg"> #}
+                         <img alt="Hotel" width="100%" src="{{ asset('img/small-right.jpg') }}">
                     </a>
                     <h6>Dress Code</h6>
                     <p>
