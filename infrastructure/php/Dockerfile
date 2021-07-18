@@ -48,6 +48,7 @@ COPY ./bin/ /srv/app/bin
 COPY ./public/index.php /srv/app/public/index.php
 COPY ./config/ /srv/app/config
 COPY ./templates/ /srv/app/templates
+COPY ./translations/ /srv/app/translations
 
 RUN composer install -n --no-suggest -q --no-scripts
 

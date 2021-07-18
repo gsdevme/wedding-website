@@ -38,6 +38,8 @@ class FoodChoicesFormHandler
                 FoodChoices::FIELD_FOOD_TYPE
             );
 
+            $specialRequirements = strval($foodChoices->getFieldName($reference, FoodChoices::FIELD_DIET));
+
             if (!isset($fields[$guestField], $fields[$starterField], $fields[$mainField], $fields[$dessertField])) {
                 throw new \InvalidArgumentException(); // @todo handle this
             }
@@ -45,6 +47,7 @@ class FoodChoicesFormHandler
             $starter = strval($fields[$starterField]);
             $main = strval($fields[$mainField]);
             $dessert = strval($fields[$dessertField]);
+            $specialRequirements = $fields[$specialRequirements] ?? '';
 
             $this->commandBus->handle(
                 new SetFoodChoicesCommand(
@@ -52,7 +55,7 @@ class FoodChoicesFormHandler
                     $starter,
                     $main,
                     $dessert,
-                    ''
+                    strval($specialRequirements)
                 )
             );
         }

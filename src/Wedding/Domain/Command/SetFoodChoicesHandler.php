@@ -46,7 +46,7 @@ class SetFoodChoicesHandler
             return; // invalid command
         }
 
-        $guest->setFoodChoices($starter, $main, $dessert, '');
+        $guest->setFoodChoices($starter, $main, $dessert, $command->getSpecialRequirements());
 
         $this->guestRepository->save($guest);
 
