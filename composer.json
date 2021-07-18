@@ -11,7 +11,7 @@
         "league/csv": "^9.6",
         "ocramius/doctrine-batch-utils": "^2.2",
         "ramsey/uuid": "^4.1",
-        "sentry/sentry-symfony": "dev-master#bb81d28d1b0648c5878864e918b05facf6a2fed3 as 3.5.4",
+        "sentry/sentry-symfony": "^4",
         "snc/redis-bundle": "^3.3",
         "symfony/asset": "5.2.*",
         "symfony/console": "5.2.*",

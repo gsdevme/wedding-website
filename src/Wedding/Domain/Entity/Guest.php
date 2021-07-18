@@ -26,6 +26,8 @@ class Guest
 
     private ?FoodChoice $dessert;
 
+    private string $specialRequirements;
+
     public function __construct(string $reference, Invite $invite, string $name)
     {
         $this->reference = $reference;
@@ -35,6 +37,7 @@ class Guest
         $this->starter = null;
         $this->main = null;
         $this->dessert = null;
+        $this->specialRequirements = '';
     }
 
     public function getReference(): string
@@ -70,6 +73,7 @@ class Guest
         $this->starter = $starter;
         $this->main = $main;
         $this->dessert = $dessert;
+        $this->specialRequirements = substr($specialRequirements, 0, 255);
     }
 
     public function setAttending(): void
@@ -100,5 +104,10 @@ class Guest
     public function getDessert(): ?FoodChoice
     {
         return $this->dessert;
+    }
+
+    public function getSpecialRequirements(): string
+    {
+        return $this->specialRequirements;
     }
 }

@@ -2,31 +2,31 @@ home:
   path: /
   controller: Wedding\Application\Http\Action\Web\Homepage
 
-invite_form:
-  path: /invite/rsvp
-  controller: Wedding\Application\Http\Action\Web\RsvpForm
-
-rsvp_finished:
-  path: /invite/yay
-  controller: Wedding\Application\Http\Action\Web\RsvpFinished
-
-invite_food_choice:
-  path: /invite/food-choice
-  controller: Wedding\Application\Http\Action\Web\FoodChoiceForm
-
-invite_login:
-  path: /invite/login
-  controller: Wedding\Application\Http\Action\Web\Login
-  methods: ['POST']
-
-invite_login_form:
-  path: /invite/login-form
-  controller: Wedding\Application\Http\Action\Web\LoginForm
-  methods: ['GET']
-
-invite_logout:
-  path: /invite/logout
-  controller: Wedding\Application\Http\Action\Web\Logout
+#invite_form:
+#  path: /invite/rsvp
+#  controller: Wedding\Application\Http\Action\Web\RsvpForm
+#
+#rsvp_finished:
+#  path: /invite/yay
+#  controller: Wedding\Application\Http\Action\Web\RsvpFinished
+#
+#invite_food_choice:
+#  path: /invite/food-choice
+#  controller: Wedding\Application\Http\Action\Web\FoodChoiceForm
+#
+#invite_login:
+#  path: /invite/login
+#  controller: Wedding\Application\Http\Action\Web\Login
+#  methods: ['POST']
+#
+#invite_login_form:
+#  path: /invite/login-form
+#  controller: Wedding\Application\Http\Action\Web\LoginForm
+#  methods: ['GET']
+#
+#invite_logout:
+#  path: /invite/logout
+#  controller: Wedding\Application\Http\Action\Web\Logout
 
 healthz:
   path: /api/healthz

@@ -28,6 +28,12 @@ https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
         <many-to-one field="dessert" target-entity="Wedding\Domain\Entity\FoodChoice">
             <join-column name="dessert_reference" referenced-column-name="reference" on-delete="CASCADE" nullable="true"/>
         </many-to-one>
+
+        <field name="specialRequirements" type="string" nullable="false" length="255">
+            <options>
+                <option name="default">None</option>
+            </options>
+        </field>
     </entity>
 
 </doctrine-mapping>
