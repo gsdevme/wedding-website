@@ -1,4 +1,4 @@
-FROM php:8.0-fpm-buster as base
+FROM php:8.1.0-fpm-buster as base
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
