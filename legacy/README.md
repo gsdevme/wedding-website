@@ -1,3 +1,16 @@
+# Legacy Symfony application
+
+**Reference only. This directory is not deployed.**
+
+This is the original Symfony 5.2 / PHP 8.0 implementation of
+ceilidhandgavin.com, kept verbatim for reference after the site was converted
+to a static nginx site. The live site is built from the repository root; see
+the [root README](../README.md).
+
+The original README follows.
+
+---
+
 # http://ceilidhandgavin.com/
 
 [![Build Status](https://travis-ci.com/gsdevme/wedding-website.svg?branch=master)](https://travis-ci.com/gsdevme/wedding-website)
