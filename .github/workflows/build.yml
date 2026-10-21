@@ -1,0 +1,47 @@
+name: build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE: ghcr.io/${{ github.repository_owner }}/wedding-website:prod
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -f infrastructure/Dockerfile -t $IMAGE .
+
+      - name: Run container
+        run: docker run -d --rm -p 8080:8080 --name web $IMAGE
+
+      - name: Smoke test
+        run: |
+          for i in $(seq 1 10); do curl -fs http://localhost:8080/api/healthz && break; sleep 1; done
+          ./infrastructure/smoke-test.sh http://localhost:8080
+
+      - name: Stop container
+        if: always()
+        run: docker stop web || true
+
+      # GITHUB_TOKEN can push to GHCR with the packages: write permission above.
+      - name: Log in to GitHub Container Registry
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push image
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: docker push $IMAGE
