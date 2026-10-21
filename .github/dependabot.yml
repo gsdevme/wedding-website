@@ -1,0 +1,11 @@
+version: 2
+updates:
+  # The nginx base image in infrastructure/Dockerfile.
+  - package-ecosystem: docker
+    directory: "/infrastructure"
+    schedule:
+      interval: weekly
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
