@@ -1,0 +1,8 @@
+services:
+  web:
+    image: ghcr.io/gsdevme/wedding-website:prod
+    build:
+      context: ..
+      dockerfile: infrastructure/Dockerfile
+    ports:
+      - "8080:8080"
